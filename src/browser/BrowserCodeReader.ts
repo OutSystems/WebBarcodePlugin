@@ -188,9 +188,7 @@ export class BrowserCodeReader {
    * @deprecated Use `listVideoInputDevices` instead.
    */
   public async getVideoInputDevices(): Promise<VideoInputDevice[]> {
-
     const devices = await this.listVideoInputDevices();
-
     return devices.map(d => new VideoInputDevice(d.deviceId, d.label));
   }
 
@@ -259,9 +257,7 @@ export class BrowserCodeReader {
    * @memberOf BrowserCodeReader
    */
   public async decodeOnceFromConstraints(constraints: MediaStreamConstraints, videoSource?: string | HTMLVideoElement): Promise<Result> {
-
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
-
     return await this.decodeOnceFromStream(stream, videoSource);
   }
 
@@ -275,12 +271,9 @@ export class BrowserCodeReader {
    * @memberOf BrowserCodeReader
    */
   public async decodeOnceFromStream(stream: MediaStream, videoSource?: string | HTMLVideoElement): Promise<Result> {
-
     this.reset();
-
     const video = await this.attachStreamToVideo(stream, videoSource);
     const result = await this.decodeOnce(video);
-
     return result;
   }
 
@@ -664,7 +657,7 @@ export class BrowserCodeReader {
 
   private _decodeOnLoadImage(element: HTMLImageElement): Promise<Result> {
     return new Promise((resolve, reject) => {
-      this.imageLoadedListener = () => this.decodeOnce(element, false, true).then(resolve, reject);
+      this.imageLoadedListener = () => console.log('Attempting decode'); this.decodeOnce(element, false, true).then(resolve, reject);
       element.addEventListener('load', this.imageLoadedListener);
     });
   }
@@ -706,7 +699,7 @@ export class BrowserCodeReader {
   public prepareImageElement(imageSource?: HTMLImageElement | string): HTMLImageElement {
 
     let imageElement: HTMLImageElement;
-
+    console.log(typeof imageSource);
     if (typeof imageSource === 'undefined') {
       imageElement = document.createElement('img');
       imageElement.width = 200;
