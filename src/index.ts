@@ -40,6 +40,7 @@ export { default as ResultMetadataType } from './core/ResultMetadataType';
 export { default as ResultPointCallback } from './core/ResultPointCallback';
 export { default as RGBLuminanceSource } from './core/RGBLuminanceSource';
 export { default as Writer } from './core/Writer';
+export { default as TemplateBuilder} from './core/TemplateBuilder.js';
 
 // core/common
 export { default as BitArray } from './core/common/BitArray';
